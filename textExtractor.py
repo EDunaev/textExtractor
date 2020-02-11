@@ -23,7 +23,7 @@ def extract_text_from_file(fsource, ftarget):
     tree = ET.parse(fsource)
     root = tree.getroot()
 
-    file = codecs.open(ftarget, "w", "utf-8")
+    file = codecs.open(ftarget, "a", "utf-8")
     textlist = []
     for element in root.iter():
         if element.text is not None and not element.text.isspace():
