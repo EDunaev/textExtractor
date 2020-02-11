@@ -4,8 +4,6 @@ import xml.etree.ElementTree as ET
 import codecs
 import os, sys, getopt
 
-temp_path = "annot.xml"
-
 def run(source, target):
     start_extractor(source, target)
     
