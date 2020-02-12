@@ -20,18 +20,20 @@ def start_extractor(path, target):
     
 
 def extract_text_from_file(fsource, ftarget):
-    tree = ET.parse(fsource)
-    root = tree.getroot()
+    try:
+        tree = ET.parse(fsource)
+        root = tree.getroot()
 
-    file = codecs.open(ftarget, "a", "utf-8")
-    textlist = []
-    for element in root.iter():
-        if element.text is not None and not element.text.isspace():
-            textlist.append(element.text)
-    file.write("\n".join(textlist))
-    file.close()
-    print('Text extracted from: ', fsource)
-
+        file = codecs.open(ftarget, "a", "utf-8")
+        textlist = []
+        for element in root.iter():
+            if element.text is not None and not element.text.isspace():
+                textlist.append(element.text)
+        file.write("\n".join(textlist))
+        file.close()
+        print('Text extracted from: ', fsource)
+    except:
+        print(fsource, " could not be parsed")
     
 if __name__ == '__main__':
     # Map command line arguments to function arguments.
