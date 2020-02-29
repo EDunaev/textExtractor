@@ -1,4 +1,4 @@
-import codecs
+import codecs, re
 
 file = codecs.open("freq_general_ru.txt", "r", "utf-8")
 topWords = []
@@ -14,7 +14,11 @@ for line in file:
     stop_words.extend(words)
 file.close()
 
-filtered_sentence = [w for w in topWords if not w in stop_words and w.isalnum() and not w.isdigit()]
+filtered_words_list = [w for w in topWords if not w in stop_words and w.isalnum() and not w.isdigit() and bool(re.search('[а-яА-Я]', w))]
 
-print(topWords)
-print(filtered_sentence)
+print(len(filtered_words_list))
+print(filtered_words_list)
+
+filteredFile = codecs.open("filteredWords.txt", "a", "utf-8")
+filteredFile.write("\n".join(filtered_words_list))
+filteredFile.close()
